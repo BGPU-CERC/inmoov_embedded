@@ -3,21 +3,12 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
-int _pins[1] = {};
-int _targets[1] = {};
-int _speeds[1] = {};
-
 void cmd_servo_set_angle(TLV *tlv)
 {
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
   int speed = *(uint16_t *)&tlv->val[3];
-
-  _pins[0] = pin;
-  _targets[0] = angle;
-  _speeds[0] = speed;
-
-  servo_target(1, _targets, _speeds, _pins);
+  servo_target(pin, angle, speed);
 
   Serial.print("CMD_SERVO_SET_ANGLE:");
   Serial.print(" pin: ");
@@ -33,11 +24,7 @@ void cmd_servo_attach(TLV *tlv)
 {
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
-
-  _pins[0] = pin;
-  _targets[0] = angle;
-
-  servo_attach(1, _pins, _targets);
+  servo_attach(pin, angle);
 
   Serial.print("CMD_SERVO_ATTACH:");
   Serial.print(" pin: ");
@@ -50,10 +37,7 @@ void cmd_servo_attach(TLV *tlv)
 void cmd_servo_detach(TLV *tlv)
 {
   int pin = tlv->val[0];
-
-  _pins[0] = pin;
-
-  servo_detach(1, _pins);
+  servo_detach(pin);
 
   Serial.print("CMD_SERVO_DETACH:");
   Serial.print(" pin: ");
@@ -63,7 +47,7 @@ void cmd_servo_detach(TLV *tlv)
 
 void cmd_servo_stop_all(TLV *tlv)
 {
-  servo_tick_disable();
+  servo_tick_stop();
 }
 
 void cmd_unknown(TLV *tlv)

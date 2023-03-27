@@ -1,6 +1,6 @@
-#include "src/servo/servo.h"
 #include "src/modbus/modbus.h"
 #include "src/command/command.h"
+#include "src/servo/servo.h"
 
 TLV *packet = modbus_tlv();
 
@@ -12,13 +12,13 @@ void setup()
 
 void loop()
 {
-  servo_tick();
-
   if (modbus_complete())
   {
     command_process(packet);
     modbus_reset();
   }
+
+  servo_tick();
 }
 
 void serialEvent()

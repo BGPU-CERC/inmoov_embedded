@@ -1,23 +1,24 @@
 #pragma once
+#include "ServoSmooth.h"
+
+struct servo
+{
+  int pin;
+  int angle_min;
+  int angle_max;
+  int pwm_min;
+  int pwm_max;
+  ServoSmooth handle;
+};
 
 void servo_setup();
 
 void servo_tick();
 
-void servo_tick_disable();
+void servo_tick_stop();
 
-void servo_target(int size, int pos[], int speed[], int pins[]);
+void servo_target(int pin, int angle, int speed);
 
-void servo_attach(int size, int pins[], int target[]);
+void servo_attach(int pin, int angle);
 
-void servo_detach(int size, int pins[]);
-
-int getIndex(int pin);
-
-int getMinPWM(int pin);
-
-int getMaxPWM(int pin);
-
-int getMinAngle(int pin);
-
-int getMaxAngle(int pin);
+void servo_detach(int pin);
