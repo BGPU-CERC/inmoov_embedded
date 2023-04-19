@@ -22,6 +22,11 @@ void cmd_servo_set_angle(TLV *tlv)
 
 void cmd_servo_attach(TLV *tlv)
 {
+  if (!digitalRead(25)) // need refactor
+  {
+    servo_power(1);
+  }
+
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
   servo_attach(pin, angle);
@@ -48,6 +53,7 @@ void cmd_servo_detach(TLV *tlv)
 void cmd_servo_stop_all(TLV *tlv)
 {
   servo_tick_stop();
+  servo_power(0);
 }
 
 void cmd_unknown(TLV *tlv)

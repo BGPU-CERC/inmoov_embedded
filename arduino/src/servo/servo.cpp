@@ -6,6 +6,9 @@ boolean ticking = false;
 
 void servo_setup()
 {
+  pinMode(servoRelay, OUTPUT);
+  servo_power(0);
+
   for (int i = 0; i < SERVO_AMOUNT; i++)
   {
     servos[i].handle.setAutoDetach(false);
@@ -36,6 +39,11 @@ void servo_tick()
 void servo_tick_stop()
 {
   ticking = false;
+}
+
+void servo_power(bool mode)
+{
+  digitalWrite(servoRelay, mode);
 }
 
 void servo_target(int pin, int angle, int speed)

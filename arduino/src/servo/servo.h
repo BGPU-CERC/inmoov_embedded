@@ -17,6 +17,8 @@ void servo_tick();
 
 void servo_tick_stop();
 
+void servo_power(bool mode);
+
 void servo_target(int pin, int angle, int speed);
 
 void servo_attach(int pin, int angle);
