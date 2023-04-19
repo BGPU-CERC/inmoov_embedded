@@ -56,6 +56,11 @@ void servo_target(int pin, int angle, int speed)
 
 void servo_attach(int pin, int angle)
 {
+  if (!digitalRead(servoRelay))
+  {
+    servo_power(1);
+  }
+
   servo *s = servo_get(pin);
   s->handle.attach(pin, s->angle_min, s->angle_max, s->pwm_min, s->pwm_max, angle);
 }
