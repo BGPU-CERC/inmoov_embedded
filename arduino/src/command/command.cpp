@@ -24,13 +24,17 @@ void cmd_servo_attach(TLV *tlv)
 {
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
-  servo_attach(pin, angle);
+  int speed = *(uint16_t *)&tlv->val[3];
+
+  servo_attach(pin, angle, speed);
 
   Serial.print("CMD_SERVO_ATTACH:");
   Serial.print(" pin: ");
   Serial.print(pin, DEC);
   Serial.print(" angle: ");
   Serial.print(angle, DEC);
+  Serial.print(" speed: ");
+  Serial.print(speed, DEC);
   Serial.print("\n");
 }
 
@@ -48,6 +52,7 @@ void cmd_servo_detach(TLV *tlv)
 void cmd_servo_stop_all(TLV *tlv)
 {
   servo_tick_stop();
+  servo_power(0);
 }
 
 void cmd_unknown(TLV *tlv)
@@ -77,7 +82,7 @@ void command_process(TLV *tlv)
   {
     cmd_servo_stop_all(tlv);
   }
-  else if (tlv->tag == CMD_SERVO_ATTACH && tlv->len == 3)
+  else if (tlv->tag == CMD_SERVO_ATTACH && tlv->len == 5)
   {
     cmd_servo_attach(tlv);
   }
