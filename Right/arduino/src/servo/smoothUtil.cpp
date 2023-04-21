@@ -51,10 +51,10 @@ void Smooth::attach(int pin, int target)
 {
     _pin = pin;
     attach(_pin);
-    if (target <= _maxAngle)
-        write(target); // если в градусах
-    else
-        writeMicroseconds(target);
+    // if (target <= _maxAngle)
+    //     write(target); // если в градусах
+    // else
+    //     writeMicroseconds(target);
 }
 
 void Smooth::attach(int pin, int minAngle, int maxAngle, int minPWM, int maxPWM, int target)

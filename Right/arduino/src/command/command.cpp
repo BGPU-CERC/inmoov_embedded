@@ -48,7 +48,6 @@ void cmd_servo_detach(TLV *tlv)
 void cmd_servo_stop_all(TLV *tlv)
 {
   servo_tick_stop();
-  servo_power(0);
 }
 
 void cmd_unknown(TLV *tlv)

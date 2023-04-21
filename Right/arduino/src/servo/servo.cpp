@@ -6,9 +6,6 @@ boolean ticking = false;
 
 void servo_setup()
 {
-  pinMode(servoRelay, OUTPUT);
-  servo_power(0);
-
   for (int i = 0; i < SERVO_AMOUNT; i++)
   {
     servos[i].handle.setAutoDetach(false);
@@ -41,11 +38,6 @@ void servo_tick_stop()
   ticking = false;
 }
 
-void servo_power(bool mode)
-{
-  digitalWrite(servoRelay, mode);
-}
-
 void servo_target(int pin, int angle, int speed)
 {
   servo *s = servo_get(pin);
@@ -56,13 +48,9 @@ void servo_target(int pin, int angle, int speed)
 
 void servo_attach(int pin, int angle)
 {
-  if (!digitalRead(servoRelay))
-  {
-    servo_power(1);
-  }
-
   servo *s = servo_get(pin);
   s->handle.attach(pin, s->angle_min, s->angle_max, s->pwm_min, s->pwm_max, angle);
+  s->handle.setTargetDeg(angle);
 }
 
 void servo_detach(int pin)
