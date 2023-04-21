@@ -21,6 +21,6 @@ void servo_power(bool mode);
 
 void servo_target(int pin, int angle, int speed);
 
-void servo_attach(int pin, int angle);
+void servo_attach(int pin, int angle, int speed);
 
 void servo_detach(int pin);
