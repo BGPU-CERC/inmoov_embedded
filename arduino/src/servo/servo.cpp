@@ -1,12 +1,12 @@
 #include "servo.h"
-#include "config.h"
+#include "../config/config.h"
 
 uint32_t throttle = 0;
 boolean ticking = false;
 
 void servo_setup()
 {
-  pinMode(servoRelay, OUTPUT);
+  pinMode(SERVO_RELAY, OUTPUT);
   servo_power(0);
 
   for (int i = 0; i < SERVO_AMOUNT; i++)
@@ -43,7 +43,7 @@ void servo_tick_stop()
 
 void servo_power(bool mode)
 {
-  digitalWrite(servoRelay, mode);
+  digitalWrite(SERVO_RELAY, mode);
 }
 
 void servo_target(int pin, int angle, int speed)
@@ -56,7 +56,7 @@ void servo_target(int pin, int angle, int speed)
 
 void servo_attach(int pin, int angle, int speed)
 {
-  if (!digitalRead(servoRelay))
+  if (!digitalRead(SERVO_RELAY))
   {
     servo_power(1);
   }
