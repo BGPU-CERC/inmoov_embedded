@@ -49,6 +49,17 @@ void cmd_servo_detach(TLV *tlv)
   Serial.print("\n");
 }
 
+void cmd_servo_power(TLV *tlv)
+{
+  int state = tlv->val[0];
+  servo_power(state);
+
+  Serial.print("CMD_SERVO_POWER:");
+  Serial.print(" state: ");
+  Serial.print(state, DEC);
+  Serial.print("\n");
+}
+
 void cmd_servo_stop_all(TLV *tlv)
 {
   servo_tick_stop();
@@ -89,6 +100,10 @@ void command_process(TLV *tlv)
   else if (tlv->tag == CMD_SERVO_DETACH && tlv->len == 1)
   {
     cmd_servo_detach(tlv);
+  }
+  else if (tlv->tag == CMD_SERVO_POWER && tlv->len == 1)
+  {
+    cmd_servo_power(tlv);
   }
   else
   {
