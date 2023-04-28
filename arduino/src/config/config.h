@@ -1,8 +1,8 @@
 #pragma once
 #include "../servo/servo.h"
 
-#define CONFIG_LEFT
-// #define CONFIG_RIGHT
+// #define CONFIG_LEFT
+#define CONFIG_RIGHT
 
 #ifdef CONFIG_LEFT
 #define SERVO_AMOUNT 15
