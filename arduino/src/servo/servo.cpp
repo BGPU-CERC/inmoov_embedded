@@ -2,12 +2,13 @@
 #include "../config/config.h"
 
 uint32_t throttle = 0;
-boolean ticking = false;
+boolean ticking = false,
+        powerState = true;
 
 void servo_setup()
 {
   pinMode(SERVO_RELAY, OUTPUT);
-  servo_power(0);
+  servo_power(powerState);
 
   for (int i = 0; i < SERVO_AMOUNT; i++)
   {
