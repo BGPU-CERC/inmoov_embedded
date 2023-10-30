@@ -9,6 +9,7 @@ void cmd_servo_set_angle(TLV *tlv)
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
   int speed = *(uint16_t *)&tlv->val[3];
+  // int currentDeg = servo_get_current_deg(pin); // test
   switch (pin)
   {
   case 77:
@@ -17,7 +18,7 @@ void cmd_servo_set_angle(TLV *tlv)
     break;
 
   default:
-  servo_target(pin, angle, speed);
+    servo_target(pin, angle, speed);
   }
 
   Serial.print("CMD_SERVO_SET_ANGLE:");
@@ -27,6 +28,8 @@ void cmd_servo_set_angle(TLV *tlv)
   Serial.print(angle, DEC);
   Serial.print(" speed: ");
   Serial.print(speed, DEC);
+  // Serial.print(" currentAngle: ");
+  // Serial.print(currentDeg, DEC);
   Serial.print("\n");
 }
 
@@ -44,7 +47,7 @@ void cmd_servo_attach(TLV *tlv)
     break;
 
   default:
-  servo_attach(pin, angle, speed);
+    servo_attach(pin, angle, speed);
   }
 
   Serial.print("CMD_SERVO_ATTACH:");

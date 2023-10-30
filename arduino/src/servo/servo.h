@@ -24,3 +24,5 @@ void servo_target(int pin, int angle, int speed);
 void servo_attach(int pin, int angle, int speed);
 
 void servo_detach(int pin);
+
+int servo_get_current_deg(int pin);
