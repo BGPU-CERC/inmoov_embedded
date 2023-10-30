@@ -1,6 +1,7 @@
 #include "src/modbus/modbus.h"
 #include "src/command/command.h"
 #include "src/servo/servo.h"
+#include "src/ultrasonic/ultrasonic.h"
 
 TLV *packet = modbus_tlv();
 
@@ -19,6 +20,7 @@ void loop()
   }
 
   servo_tick();
+  // ultrasonic_ping();
 }
 
 void serialEvent()

@@ -67,3 +67,9 @@ void servo_detach(int pin)
   servo *s = servo_get(pin);
   s->handle.detach();
 }
+
+int servo_get_current_deg(int pin)
+{
+  servo *s = servo_get(pin);
+  return s->handle.getCurrentDeg();
+}

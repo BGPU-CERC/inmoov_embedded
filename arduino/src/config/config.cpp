@@ -27,6 +27,12 @@ servo servos[SERVO_AMOUNT] = {
     {27, 53, 93, 320, 2700},  // 27 topstom
     {28, 60, 120, 320, 2700}, // 28 midstom
 };
+
+ultrasonic utlrasonics[ULTRASONIC_AMOUNT] = {
+    {new NewPing(32, 33, MAX_SCAN_DISTANCE)},
+    {new NewPing(34, 35, MAX_SCAN_DISTANCE)},
+};
+
 #endif
 
 #ifdef CONFIG_RIGHT

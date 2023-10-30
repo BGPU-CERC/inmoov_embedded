@@ -1,5 +1,6 @@
 #include "command.h"
 #include "../servo/servo.h"
+#include "../ultrasonic/ultrasonic.h"
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
@@ -53,6 +54,7 @@ void cmd_servo_power(TLV *tlv)
 {
   int state = tlv->val[0];
   servo_power(state);
+  ultrasonic_ping_mode(state); // test
 
   Serial.print("CMD_SERVO_POWER:");
   Serial.print(" state: ");
