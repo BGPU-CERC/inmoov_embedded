@@ -9,7 +9,16 @@ void cmd_servo_set_angle(TLV *tlv)
   int pin = tlv->val[0];
   int angle = *(uint16_t *)&tlv->val[1];
   int speed = *(uint16_t *)&tlv->val[3];
+  switch (pin)
+  {
+  case 77:
+    servo_target(23, angle, speed);
+    servo_target(29, angle, speed);
+    break;
+
+  default:
   servo_target(pin, angle, speed);
+  }
 
   Serial.print("CMD_SERVO_SET_ANGLE:");
   Serial.print(" pin: ");
@@ -27,7 +36,16 @@ void cmd_servo_attach(TLV *tlv)
   int angle = *(uint16_t *)&tlv->val[1];
   int speed = *(uint16_t *)&tlv->val[3];
 
+  switch (pin)
+  {
+  case 77:
+    servo_attach(23, angle, speed);
+    servo_attach(29, angle, speed);
+    break;
+
+  default:
   servo_attach(pin, angle, speed);
+  }
 
   Serial.print("CMD_SERVO_ATTACH:");
   Serial.print(" pin: ");
