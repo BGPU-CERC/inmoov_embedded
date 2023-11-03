@@ -108,28 +108,25 @@ void cmd_unknown(TLV *tlv)
 
 void command_process(TLV *tlv)
 {
-  if (tlv->tag == CMD_SERVO_SET_ANGLE && tlv->len == 5)
+  switch (tlv->tag)
   {
+  case CMD_SERVO_SET_ANGLE:
     cmd_servo_set_angle(tlv);
-  }
-  else if (tlv->tag == CMD_SERVO_STOP_ALL && tlv->len == 0)
-  {
+    break;
+  case CMD_SERVO_STOP_ALL:
     cmd_servo_stop_all(tlv);
-  }
-  else if (tlv->tag == CMD_SERVO_ATTACH && tlv->len == 5)
-  {
+    break;
+  case CMD_SERVO_ATTACH:
     cmd_servo_attach(tlv);
-  }
-  else if (tlv->tag == CMD_SERVO_DETACH && tlv->len == 1)
-  {
+    break;
+  case CMD_SERVO_DETACH:
     cmd_servo_detach(tlv);
-  }
-  else if (tlv->tag == CMD_SERVO_POWER && tlv->len == 1)
-  {
+    break;
+  case CMD_SERVO_POWER:
     cmd_servo_power(tlv);
-  }
-  else
-  {
+    break;
+  default:
     cmd_unknown(tlv);
+    break;
   }
 }
