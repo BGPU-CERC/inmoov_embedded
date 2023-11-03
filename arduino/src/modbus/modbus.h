@@ -1,9 +1,5 @@
 #pragma once
 
-#define MODBUS_PREFIX_LEN 3
-#define MODBUS_PREFIX_VAL 0
-
-#define MODBUS_STATE_PREFIX 10
 #define MODBUS_STATE_TAG 11
 #define MODBUS_STATE_LEN 12
 #define MODBUS_STATE_VAL 13
