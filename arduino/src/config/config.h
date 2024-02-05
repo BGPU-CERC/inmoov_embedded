@@ -12,7 +12,7 @@
 #endif
 
 #ifdef CONFIG_RIGHT
-#define SERVO_AMOUNT 10
+#define SERVO_AMOUNT 12
 #endif
 
 #define SERVO_RELAY 25
